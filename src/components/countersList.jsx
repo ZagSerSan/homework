@@ -23,18 +23,26 @@ const CountersList = () => {
   //todo
   function handleIncrement(id) {
     setCounters(counters.map(item => {
-      return ({
-        ...item,
-        value: item.id === id ? item.value += 1 : item.value
-      })
+      return (
+        item.value !== 10
+        ? {
+          ...item,
+          value: item.id === id ? item.value += 1 : item.value
+          }
+        : item
+      )
     }))
   }
   function handleDecrement(id) {
     setCounters(counters.map(item => {
-      return ({
-        ...item,
-        value: item.id === id ? item.value -= 1 : item.value
-      })
+      return (
+        item.value !== 0
+        ? {
+          ...item,
+          value: item.id === id ? item.value -= 1 : item.value
+          }
+        : item
+      )
     }))
   }
 
