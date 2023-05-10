@@ -1,9 +1,8 @@
 import React from 'react'
 
-const post = ({match,posts}) => {
-  const postId = match.params.postId
-  const getPostById = (id) => {
-    return posts.find((post)=>(post.id.toString() === id))
+const post = ({postId, posts}) => {
+  const getPostById = (postId) => {
+    return posts.find((post)=>(post.id.toString() === postId))
   }
   const post = getPostById(postId)
 
