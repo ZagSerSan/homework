@@ -5,7 +5,7 @@ const PostList = ({posts}) => {
   return (<>
     {posts.map(post => 
       <h3 key={post.id}>
-        {post.label} <Link to={`/posts/${post.id}`}>Читать</Link>
+        {post.title} <Link to={`/posts/${post.id}`}>читать</Link>
       </h3>)}
   </>)
 }
