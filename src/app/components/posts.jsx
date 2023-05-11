@@ -17,9 +17,12 @@ const Posts = ({match, location}) => {
   }
 
   const search = query.parse(location.search)
+  // console.log('search', search)
+  // console.log(Object.keys(search))
+  // console.log(search[Object.keys(search)])
 
-  const cropPosts = search.count
-    ? _(posts).slice(0).take(search.count).value()
+  const cropPosts = search[Object.keys(search)]
+    ? _(posts).slice(0).take(search[Object.keys(search)]).value()
     : posts
 
   return <>{postId ? <Post post={getPostById(postId)}/> : <PostList posts={cropPosts}/>}</>
