@@ -17,13 +17,8 @@ const Posts = ({match, location}) => {
   }
 
   const search = query.parse(location.search)
-  // const search = {count: 1}
 
-  // console.log('search', search)
-  // console.log(search.hasOwnProperty('count'))
-  // console.log(Boolean(search)) // {} = true
-
-  const cropPosts = search
+  const cropPosts = search.count
     ? _(posts).slice(0).take(search.count).value()
     : posts
 
