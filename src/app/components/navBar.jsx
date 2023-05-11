@@ -10,9 +10,6 @@ const NavBar = () => {
       <li><Link to="/posts?count=1">| Posts/count=1</Link></li>
       <li><Link to="/posts?count=2">| Posts/count=2</Link></li>
       <li><Link to="/posts?count=3">| Posts/count=3</Link></li>
-      <li><Link to="/posts?anyName=1">| Posts/anyName=1</Link></li>
-      <li><Link to="/posts?anyName=2">| Posts/anyName=2</Link></li>
-      <li><Link to="/posts?anyName=3">| Posts/anyName=3</Link></li>
       <li><Link to="/dashboard">Dashboard</Link></li>
     </ul>
    );
