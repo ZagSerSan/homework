@@ -1,8 +1,11 @@
 import React from 'react'
+import query from 'query-string'
+import _ from 'lodash'
+// components
 import PostList from "./postList"
 import Post from "./post"
 
-const Posts = ({match}) => {
+const Posts = ({match, location}) => {
   const posts = [
     {id: 1, title: 'Post 1', label: 'It`s the post 1'},
     {id: 2, title: 'Post 2', label: 'It`s the post 2'},
@@ -13,7 +16,18 @@ const Posts = ({match}) => {
     return posts.find( post => (post.id.toString() === postId))
   }
 
-  return <>{postId ? <Post post={getPostById(postId)}/> : <PostList {...{posts}}/>}</>
+  const search = query.parse(location.search)
+  // const search = {count: 1}
+
+  // console.log('search', search)
+  // console.log(search.hasOwnProperty('count'))
+  // console.log(Boolean(search)) // {} = true
+
+  const cropPosts = search
+    ? _(posts).slice(0).take(search.count).value()
+    : posts
+
+  return <>{postId ? <Post post={getPostById(postId)}/> : <PostList posts={cropPosts}/>}</>
 }
  
 export default Posts
