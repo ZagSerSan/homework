@@ -10,10 +10,8 @@ const Contacts = () => {
       <li><Link to='/contacts/dep1'>Contact Dep 1</Link></li>
       <li><Link to='/contacts/dep2'>Contact Dep 2</Link></li>
     </ul>
-    <Switch>
-      <Route path="/contacts/dep1" component={ContactDep1} />
-      <Route path="/contacts/dep2" component={ContactDep2} />
-    </Switch>
+    <Route path="/contacts/dep1" component={ContactDep1} />
+    <Route path="/contacts/dep2" component={ContactDep2} />
   </>)
 }
  
