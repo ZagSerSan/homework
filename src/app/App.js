@@ -5,6 +5,7 @@ import Home from "./components/home"
 import Dashboard from "./components/dashboard"
 import Login from "./components/login"
 import Posts from "./components/posts"
+import Contacts from "./components/contacts"
 import NotFound from "./components/notFound"
 
 function App() {
@@ -18,6 +19,9 @@ function App() {
         <Route path="/dashboard" component={Dashboard}/>
         <Route path="/login" component={Login} />
         <Route path="/posts/:postId?" component={Posts}/>
+
+        <Route path="/contacts" component={Contacts} />
+
         <Route component={NotFound}/>
       </Switch>
     </div>
