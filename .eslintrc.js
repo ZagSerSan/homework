@@ -29,6 +29,7 @@ module.exports = {
     ],
     'multiline-ternary': ['off'],
     'no-trailing-spaces': ['off'],
-    'object-curly-spacing': ['off']
+    'object-curly-spacing': ['off'],
+    'react/display-name': ['off']
   }
 }

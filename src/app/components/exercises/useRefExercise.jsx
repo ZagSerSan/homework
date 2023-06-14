@@ -32,7 +32,7 @@ const UseRefExercise = () => {
       <button
         className='btn btn-primary'
         onClick={handleChange}
-        style={{marginTop: '10px'}}
+        style={{ marginTop: '10px' }}
       >
         Change
       </button>
