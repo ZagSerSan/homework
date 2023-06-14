@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import CardWrapper from '../../common/Card'
 import SmallTitle from '../../common/typografy/smallTitle'
@@ -10,9 +10,9 @@ const FormComponent = ({children}) => {
   const handleChange = (target) => {
     setData(prevState => ({...prevState, [target.name]: target.value}))
   }
-  useEffect(() => {
-    console.log('data', data)
-  }, [data])
+  // useEffect(() => {
+  //   console.log('data', data)
+  // }, [data])
 
   return React.Children.map(children, (child) => {
     const config = {
