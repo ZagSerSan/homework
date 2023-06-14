@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import CardWrapper from '../../common/Card'
 import SmallTitle from '../../common/typografy/smallTitle'
@@ -6,13 +6,21 @@ import Divider from '../../common/divider'
 import TextField from '../../common/form/textField'
 
 const FormComponent = ({children}) => {
-  // const [data, setData] = useState()
-  // const handleChange = (target) => {
-  //   setData(prevState => ({...prevState, [target.name]: target.value}))
-  // }
+  const [data, setData] = useState({})
+  const handleChange = (target) => {
+    setData(prevState => ({...prevState, [target.name]: target.value}))
+  }
+  useEffect(() => {
+    console.log('data', data)
+  }, [data])
+
   return React.Children.map(children, (child) => {
-    // console.log('child', child)
-    return child
+    const config = {
+      ...child.props,
+      onChange: handleChange,
+      value: data[child.props.name] || ''
+    }
+    return React.cloneElement(child, config)
   })
 }
 FormComponent.propTypes = {
