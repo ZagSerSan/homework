@@ -12,8 +12,25 @@ const EditQualityPage = () => {
     setQuality(data.content)
   }, [])
 
-  const handleSubmit = (form) => {
-    axios.put(qualityEndPoint, form).then(respons => console.log(respons.data.content))
+  const handleSubmit = async (form) => {
+    try {
+      await axios
+        .put(qualityEndPoint + 'dasd', form)
+        .then(respons => console.log(respons.data.content))
+    } catch (error) {
+      // условие для отлавливания ожидаемой ошибки (см коды статусов http)
+      const expectedErrors = 
+        error.response &&
+        error.response.status >= 400 &&
+        error.response.status < 500
+      if (!expectedErrors) {
+        // неожидаемые ошибки
+        console.log('Unexpected Errors')
+      } else {
+        // ожидаемые ошибки, то есть не входят в условие ожидаемых
+        console.log('Expected Errors')
+      }
+    }
   }
 
   return (
