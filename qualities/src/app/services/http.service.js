@@ -1,5 +1,9 @@
 import axios from 'axios'
-import * as Sentry from '@sentry/react'
+import logger from './log.service'
+import { toast } from 'react-toastify'
+import config from '../config.json'
+
+axios.defaults.baseURL = config.apiEndPoint
 
 axios.interceptors.response.use((res) => res,
 function(error) {
@@ -9,10 +13,11 @@ function(error) {
   error.response.status >= 400 &&
   error.response.status < 500
   if (!expectedErrors) {
-    // неожидаемые ошибки
-    console.log('Unexpected Errors')
     // Sentry
-    Sentry.captureException(error)
+    logger.log(error)
+    // неожидаемые ошибки
+    // toast('Unexpected Errors')
+    toast.error('Something was wrong. Try it later.')
   }
   return Promise.reject(error)
 })

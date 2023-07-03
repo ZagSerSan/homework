@@ -8,7 +8,7 @@ const QualitiesListPage = () => {
   const [qualities, setQualities] = useState([])
 
   useEffect(async () => {
-    const {data} = await axios.get('http://localhost:4000/api/v1/quality')
+    const {data} = await axios.get('quality')
     setQualities(data.content)
   }, [])
 
