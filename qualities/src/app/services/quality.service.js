@@ -3,7 +3,7 @@ const qualityEndpoint = `quality/`
 
 const qualityService = {
   update: async (id, content) => {
-    const {data} = await httpService.put(qualityEndpoint + id, content)
+    const {data} = await httpService.put(qualityEndpoint + id + 'fsdf', content)
     return data
   },
   get: async (id) => {
