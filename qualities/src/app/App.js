@@ -1,10 +1,11 @@
 import React from 'react'
+import 'react-toastify/dist/ReactToastify.css'
 import { Switch, Route, Redirect } from 'react-router-dom'
+import {ToastContainer} from 'react-toastify'
+import routes from './routes'
 import Container from './components/common/container'
 import NavBar from './components/ui/NavBar'
-import routes from './routes'
-import {ToastContainer} from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { QualitiesProvider } from './hooks/useQualities'
 
 const getRoutes = (routes) => {
   return routes.map((prop, key) => {
@@ -12,20 +13,18 @@ const getRoutes = (routes) => {
   })
 }
 
-// export const QualitiesContex = React.createContext()
-
 function App() {
   return (
     <div className="App">
       <NavBar routes={routes} />
-      {/* <QualitiesContex.Provider value={'Simple text'}> */}
+      <QualitiesProvider>
         <Container>
           <Switch>
             {getRoutes(routes)}
             <Redirect to="/" />
           </Switch>
         </Container>
-      {/* </QualitiesContex.Provider> */}
+      </QualitiesProvider>
       <ToastContainer />
     </div>
   )
