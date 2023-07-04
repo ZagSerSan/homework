@@ -1,23 +1,34 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import SelectField from '../common/form/selectField'
 import TextField from '../common/form/textField'
 import colors from '../../constants/colors.json'
+// import useForm from '../../hooks/useForm'
+// import { QualitiesContex } from '../../App'
 
-const CreateForm = () => {
-  const [form, setForm] = useState({})
-  const handeleSubmit = (e) => {
+const useForm = (initialState = {}, onSubmit) => {
+  const [form, setForm] = useState(initialState)
+  console.log('initialState :>> ', initialState);
+
+  const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(form)
+    onSubmit?.(form)
   }
   const handleChange = (target) => {
-    console.log(target)
     setForm((prevState) => ({
       ...prevState,
       [target.name]: target.value
     }))
   }
+  return { form, handleChange, handleSubmit }
+}
+
+const QualityForm = ({data, onSubmit}) => {
+  // const { form, handleChange, handleSubmit } = useForm({}, onSubmit)
+  const { form, handleChange, handleSubmit } = useForm(data, onSubmit)
+  // const data = useContext(QualitiesContex)
+
   return (
-    <form onSubmit={handeleSubmit}>
+    <form onSubmit={handleSubmit}>
       <TextField
         label="Наименование"
         name="name"
@@ -36,4 +47,4 @@ const CreateForm = () => {
   )
 }
 
-export default CreateForm
+export default QualityForm
