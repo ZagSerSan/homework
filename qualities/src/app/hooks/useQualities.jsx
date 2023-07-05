@@ -28,8 +28,29 @@ export const QualitiesProvider = ({children}) => {
     getQualities()
   }, [])
 
-  return <QualitiesContex.Provider value={ {qualities, isLoading} }>
+  const getQuality = (id) => {
+    return qualities.find(q => q._id === id)
+  }
+
+  const updateQuality = async ({_id: id, ...data}) => {
+    try {
+      const {content} = await qualityService.update(id, data)
+      setQualities(prevState => prevState.map(item => {
+        if (item._id === content._id) {
+          return content
+        } else {
+          return item
+        }
+      }))
+      return content
+    } catch (error) {
+      const {message} = error.response.data
+      setError(message)
+      toast.error(message)
+    }
+  }
+
+  return <QualitiesContex.Provider value={ {qualities, isLoading, getQuality, updateQuality} }>
     {!isLoading ? children : <h2>Qualities Loading ...</h2>}
-    {children}
   </QualitiesContex.Provider>
 }
