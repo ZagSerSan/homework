@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { toast } from 'react-toastify'
 import qualityService from '../services/quality.service'
 
@@ -12,6 +12,7 @@ export const QualitiesProvider = ({children}) => {
   const [qualities, setQualities] = useState([])
   const [error, setError] = useState(null)
   const [isLoading, setLoading] = useState(true)
+  const prevState = useRef()
 
   useEffect(async () => {
     const getQualities = async () => {
@@ -59,15 +60,19 @@ export const QualitiesProvider = ({children}) => {
     }
   }
   const deleteQuality = async (id) => {
+    prevState.current = qualities
+    setQualities(prevState => {
+      return prevState.filter(item => item._id !== id)
+    })
     try {
-      const {content} = await qualityService.delete(id)
-      setQualities(prevState => {
-        return prevState.filter(item => item._id !== content._id)
-      })
-      return content
+      await qualityService.delete(id)
+      // return content
     } catch (error) {
       const {message} = error.response.data
       setError(message)
+      // оптимистическое удаление (возврат состояние при ошибке)
+      setQualities(prevState.current)
+      // alert
       toast.error(message)
     }
   }
