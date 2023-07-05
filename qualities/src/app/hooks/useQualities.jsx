@@ -27,11 +27,9 @@ export const QualitiesProvider = ({children}) => {
     }
     getQualities()
   }, [])
-
   const getQuality = (id) => {
     return qualities.find(q => q._id === id)
   }
-
   const updateQuality = async ({_id: id, ...data}) => {
     try {
       const {content} = await qualityService.update(id, data)
@@ -49,8 +47,32 @@ export const QualitiesProvider = ({children}) => {
       toast.error(message)
     }
   }
+  const addQuality = async (data) => {
+    try {
+      const {content} = await qualityService.create(data)
+      setQualities(prevState => [...prevState, content])
+      return content
+    } catch (error) {
+      const {message} = error.response.data
+      setError(message)
+      toast.error(message)
+    }
+  }
+  const deleteQuality = async (id) => {
+    try {
+      const {content} = await qualityService.delete(id)
+      setQualities(prevState => {
+        return prevState.filter(item => item._id !== content._id)
+      })
+      return content
+    } catch (error) {
+      const {message} = error.response.data
+      setError(message)
+      toast.error(message)
+    }
+  }
 
-  return <QualitiesContex.Provider value={ {qualities, isLoading, getQuality, updateQuality} }>
+  return <QualitiesContex.Provider value={{ qualities, isLoading, getQuality, updateQuality, addQuality, deleteQuality }}>
     {!isLoading ? children : <h2>Qualities Loading ...</h2>}
   </QualitiesContex.Provider>
 }

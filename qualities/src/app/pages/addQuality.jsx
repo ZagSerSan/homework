@@ -1,10 +1,14 @@
 import React from 'react'
 import QualityForm from '../components/ui/qualityForm'
+import { useQualities } from '../hooks/useQualities'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom'
 
 const AddQualityPage = () => {
-  const handleSubmit = async (data) => {
-    console.log(data)
-    // updateQuality(data)
+  const history = useHistory()
+  const { addQuality } = useQualities()
+
+  const handleSubmit = (data) => {
+    addQuality(data).then(data => data ? history.push('/') : console.log(data))
   }
   
   return (
