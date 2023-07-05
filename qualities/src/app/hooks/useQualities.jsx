@@ -28,6 +28,10 @@ export const QualitiesProvider = ({children}) => {
     }
     getQualities()
   }, [])
+  const errorCatcher = (error) => {
+    const {message} = error.response.data
+    setError(message)
+  }
   const getQuality = (id) => {
     return qualities.find(q => q._id === id)
   }
@@ -43,9 +47,7 @@ export const QualitiesProvider = ({children}) => {
       }))
       return content
     } catch (error) {
-      const {message} = error.response.data
-      setError(message)
-      toast.error(message)
+      errorCatcher(error)
     }
   }
   const addQuality = async (data) => {
@@ -54,28 +56,27 @@ export const QualitiesProvider = ({children}) => {
       setQualities(prevState => [...prevState, content])
       return content
     } catch (error) {
-      const {message} = error.response.data
-      setError(message)
-      toast.error(message)
+      errorCatcher(error)
     }
   }
   const deleteQuality = async (id) => {
     prevState.current = qualities
-    setQualities(prevState => {
-      return prevState.filter(item => item._id !== id)
-    })
     try {
-      await qualityService.delete(id)
-      // return content
+      const {content} = await qualityService.delete(id)
+      setQualities(prevState => {
+        return prevState.filter(item => item._id !== content._id)
+      })
     } catch (error) {
-      const {message} = error.response.data
-      setError(message)
-      // оптимистическое удаление (возврат состояние при ошибке)
-      setQualities(prevState.current)
-      // alert
-      toast.error(message)
+      errorCatcher(error)
     }
   }
+
+  useEffect(() => {
+    if (error !== null) {
+      toast(error)
+      setError(null)
+    }
+  }, [error])
 
   return <QualitiesContex.Provider value={{ qualities, isLoading, getQuality, updateQuality, addQuality, deleteQuality }}>
     {!isLoading ? children : <h2>Qualities Loading ...</h2>}
