@@ -10,7 +10,7 @@ const AddQualityPage = () => {
   const handleSubmit = (data) => {
     addQuality(data).then(data => data ? history.push('/') : console.log(data))
   }
-  
+
   return (
     <>
       <h1>Add Quality</h1>
