@@ -1,23 +1,20 @@
 import './App.css'
-import {compose, pipe} from 'lodash/fp'
+
+function createStore(initialState) {
+  let state = initialState
+
+  function getState() {
+    return state
+  }
+  return {getState}
+}
+
+const store = createStore([{id: 1, description: 'Task 1'}])
 
 const App = () => {
-  const x = 2
-  const double = (num) => num * 2
-  const square = (num) => num * num
-  const half = (num) => num / 2
-
-  const divide = (num2) => {
-    return function(num1) {
-      return num1 / num2
-    }
-  }
-
-  const mathCalculate = compose (divide(2), half, square, double)
-
+  console.log(store.getState())
   return (
-    <h1>{mathCalculate(x)}</h1>
-    // <h1>app</h1>
+    <h1>app</h1>
   )
 }
 
