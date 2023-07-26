@@ -7,7 +7,13 @@ const App = () => {
   const square = (num) => num * num
   const half = (num) => num / 2
 
-  const mathCalculate = compose (half, square, double)
+  const divide = (num2) => {
+    return function(num1) {
+      return num1 / num2
+    }
+  }
+
+  const mathCalculate = compose (divide(2), half, square, double)
 
   return (
     <h1>{mathCalculate(x)}</h1>
