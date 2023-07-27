@@ -1,66 +1,46 @@
-import { useEffect, useState } from 'react'
 import './App.css'
+import { useEffect, useState } from 'react'
+import { createStore, taskReducer } from './store'
+import * as actionTypes from './store/actionTypes'
 
-function taskReducer(state, action) {
-  switch (action.type) {
-    case 'task/completed':
-      const newArray = [...state]
-      const elementIndex = newArray.findIndex(el => el.id === action.payload.id)
-      newArray[elementIndex].completed = !newArray[elementIndex].completed
-      return newArray
-      break;
-  
-    default:
-      break;
-  }
-}
-function createStore(reducer, initialState) {
-  let state = initialState
-  let listeners = []
-
-  function getState() {
-    return state
-  }
-  function dispatch(action) {
-    state = reducer(state, action)
-    for (let i = 0; i < listeners.length; i++) {
-      const listener = listeners[i]
-      listener()
-    }
-  }
-  // функция добавления слушателей (в listeners)
-  function subscribe(listener) {
-    listeners.push(listener)
-  }
-  return { getState, dispatch, subscribe }
-}
-const store = createStore(taskReducer, [
-  {id: 1, description: 'Task 1', completed: false},
-  {id: 2, description: 'Task 2', completed: false}
-])
-const completeTask = (taskId) => {
-  store.dispatch({ type: 'task/completed', payload: {id: taskId}})
-}
+const initialState = [
+  {id: 1, title: 'Task 1', completed: false},
+  {id: 2, title: 'Task 2', completed: false}
+]
+const store = createStore(taskReducer, initialState)
 
 // component
 const App = () => {
   const [state, setState] = useState(store.getState())
-  // const state = store.getState()
   
-    useEffect(() => {
+  useEffect(() => {
     store.subscribe(() => {
       setState(store.getState())
     })
   }, [])
+
+  const completeTask = (taskId) => {
+    store.dispatch({
+      type: actionTypes.taskUpdated,
+      payload: {id: taskId, completed: true}
+    })
+  }
+  const changeTitle = (taskId) => {
+    store.dispatch({
+      type: actionTypes.taskUpdated,
+      payload: {id: taskId, title: `New title for ${taskId}`}
+    })
+  }
 
   return (
     <>
       <h1>app</h1>
       <ul>
         {state.map(task => <li key={task.id}>
-          <p>{task.description}</p>
+          <p>{task.title}</p>
           <p>{`Completed: ${task.completed}`}</p>
           <button onClick={()=>completeTask(task.id)}>Complete</button>
+          <button onClick={()=>changeTitle(task.id)}>Change title</button>
           <hr/>
         </li>)}
       </ul>
