@@ -1,4 +1,5 @@
 import { useState } from "react"
+import avatar from '../../img/header/logo-icon2.png'
 
 const Header = () => {
   const [fixed, setFixed] = useState(false)
@@ -19,7 +20,7 @@ const Header = () => {
       <div className="container">
         <div className="header__inner">
           <div className="header-logo">
-            <img src="src/img/header/logo-icon2.png" alt="logo" />
+            <img src={avatar} alt="logo" />
             <div className="header-logo__content">
               <div className="header-logo__name">Serhii Zahorskyi</div>
               <div className="header-logo__prof">Frontend dev</div>

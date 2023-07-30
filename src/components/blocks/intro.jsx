@@ -1,4 +1,5 @@
 import IconSVG from "../iconSVG"
+import my_photo from '../../img/intro/photo.png'
 
 const Intro = () => {
   return (
@@ -66,7 +67,7 @@ const Intro = () => {
             </div>
           </div>
           <div className="intro-photo">
-            <img src="src/img/intro/photo.png" alt="photo" />
+            <img src={my_photo} alt="photo" />
           </div>
         </div>
       </div>

@@ -16,7 +16,7 @@ const works = [
     name: 'ActiveBox',
     category: 'Lending',
     date: '2022-11-23',
-    website_link: '../../src/portfolio/lending/activebox/index.html',
+    website_link: './portfolio/lending/activebox/index.html',
     img_src: activebox_preview,
     modal_images: activebox_slides,
     description: {
@@ -30,7 +30,7 @@ const works = [
     name: 'MoGo',
     category: 'Lending',
     date: '2022-11-23',
-    website_link: '../../src/portfolio/lending/mogo/index.html',
+    website_link: './portfolio/lending/mogo/index.html',
     img_src: mogo_preview,
     modal_images: mogo_slides,
     description: {
@@ -44,7 +44,7 @@ const works = [
     name: 'Designer Portfolio',
     category: 'Lending',
     date: '2022-11-23',
-    website_link: '../../src/portfolio/lending/designer-portfolio/index.html',
+    website_link: './portfolio/lending/designer-portfolio/index.html',
     img_src: designerPortfolio_preview,
     modal_images: designerPortfolio_slides,
     description: {
@@ -58,7 +58,7 @@ const works = [
     name: 'Custom Calculator',
     category: 'App',
     date: '2022-11-23',
-    website_link: '../../src/portfolio/app/calculator/index.html',
+    website_link: './portfolio/app/calculator/index.html',
     img_src: calculator_preview,
     modal_images: calculator_slide,
     description: {
@@ -72,7 +72,7 @@ const works = [
     name: 'Todo list',
     category: 'App',
     date: '2022-11-23',
-    website_link: '../../src/portfolio/app/todoList/index.html',
+    website_link: './portfolio/app/todoList/index.html',
     img_src: todoList_preview,
     modal_images: todoList_slide,
     description: {
@@ -86,7 +86,7 @@ const works = [
     name: 'Contects Menu',
     category: 'App',
     date: '2022-11-23',
-    website_link: '../../src/portfolio/app/contectsMenu/index.html',
+    website_link: './portfolio/app/contectsMenu/index.html',
     img_src: contectsMenu_preview,
     modal_images: contectsMenu_slide,
     description: {
@@ -100,7 +100,7 @@ const works = [
     name: 'Weather Widget',
     category: 'App',
     date: '2022-11-23',
-    website_link: '../../src/portfolio/app/weather-widget/',
+    website_link: './portfolio/app/weather-widget/index.html',
     img_src: weatherWidget_preview,
     modal_images: weatherWidget_slide,
     description: {
@@ -114,6 +114,7 @@ const works = [
     name: 'Tic-Tac-Toe',
     category: 'App',
     date: '2022-11-23',
+    // website_link: './portfolio/app/tic-tac-toe/index.html',
     img_src: ticTacToe_preview,
     modal_images: ticTacToe_slide,
     description: {
@@ -127,6 +128,7 @@ const works = [
     name: 'Social Users Table',
     category: 'App',
     date: '2022-11-23',
+    // website_link: './portfolio/app/tic-tac-toe/index.html',
     img_src: usersTable_preview,
     modal_images: usersTable_slides,
     description: {

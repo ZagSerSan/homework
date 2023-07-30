@@ -54,9 +54,11 @@ const Modal = ({ workItem, handleShow }) => {
             {/* <svg className="react"><use href="#react"></use></svg> */}
           </div>
           <div className="modal-work__client">
-            <a href={website_link ? website_link : 'not link'} target="_blank">
-              Open website
-            </a>
+            {website_link && (
+              <a href={website_link} target="_blank">
+                Open website
+              </a>
+            )}
             <a
               href="https://github.com/ZagSerSan/ZagSerSan.github.io/src/portfolio/1-activebox"
               target="_blank"
