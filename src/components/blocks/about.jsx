@@ -1,3 +1,5 @@
+import my_about_photo from '../../img/about/photo.png'
+
 const About = () => {
   return (
     <div className="about" id="about">
@@ -5,7 +7,7 @@ const About = () => {
         <div className="about__inner">
           <div className="about__col">
             <div className="about__photo">
-              <img src="src/img/about/photo.png" alt="designer_photo" />
+              <img src={my_about_photo} alt="designer_photo" />
             </div>
           </div>
           <div className="about__col">
