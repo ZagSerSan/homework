@@ -2,7 +2,7 @@ import IconSVG from './iconSVG'
 import ModalSlider from './modalSlider'
 
 const Modal = ({ workItem, handleShow }) => {
-  const { name, category, date, modal_images, description, website_link } = workItem
+  const { name, category, date, modal_images, description, website_link, file_link } = workItem
 
   document.addEventListener('keydown', (event) => {
     let key = event.key
@@ -59,12 +59,15 @@ const Modal = ({ workItem, handleShow }) => {
                 Open website
               </a>
             )}
-            <a
-              href="https://github.com/ZagSerSan/ZagSerSan.github.io/src/portfolio/1-activebox"
-              target="_blank"
-            >
-              View files
-            </a>
+            {file_link && (
+              <a
+                href={file_link}
+                target="_blank"
+              >
+                View files
+              </a>
+            )}
+            
           </div>
           <div className="modal-work__textbox">
             <p className="modal-work__text">{description.en}</p>

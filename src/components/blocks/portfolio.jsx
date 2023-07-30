@@ -17,6 +17,7 @@ const works = [
     category: 'Lending',
     date: '2022-11-23',
     website_link: './portfolio/lending/activebox/index.html',
+    file_link: './portfolio/lending/activebox',
     img_src: activebox_preview,
     modal_images: activebox_slides,
     description: {
@@ -31,6 +32,7 @@ const works = [
     category: 'Lending',
     date: '2022-11-23',
     website_link: './portfolio/lending/mogo/index.html',
+    file_link: './portfolio/lending/mogo/',
     img_src: mogo_preview,
     modal_images: mogo_slides,
     description: {
@@ -45,6 +47,7 @@ const works = [
     category: 'Lending',
     date: '2022-11-23',
     website_link: './portfolio/lending/designer-portfolio/index.html',
+    file_link: './portfolio/lending/designer-portfolio/',
     img_src: designerPortfolio_preview,
     modal_images: designerPortfolio_slides,
     description: {
@@ -59,6 +62,7 @@ const works = [
     category: 'App',
     date: '2022-11-23',
     website_link: './portfolio/app/calculator/index.html',
+    file_link: './portfolio/lending/calculator/',
     img_src: calculator_preview,
     modal_images: calculator_slide,
     description: {
@@ -72,7 +76,7 @@ const works = [
     name: 'Todo list',
     category: 'App',
     date: '2022-11-23',
-    website_link: './portfolio/app/todoList/index.html',
+    file_link: './portfolio/app/todoList/',
     img_src: todoList_preview,
     modal_images: todoList_slide,
     description: {
@@ -87,6 +91,7 @@ const works = [
     category: 'App',
     date: '2022-11-23',
     website_link: './portfolio/app/contectsMenu/index.html',
+    file_link: './portfolio/app/contectsMenu/',
     img_src: contectsMenu_preview,
     modal_images: contectsMenu_slide,
     description: {
@@ -100,7 +105,7 @@ const works = [
     name: 'Weather Widget',
     category: 'App',
     date: '2022-11-23',
-    website_link: './portfolio/app/weather-widget/index.html',
+    file_link: './portfolio/app/weather-widget/',
     img_src: weatherWidget_preview,
     modal_images: weatherWidget_slide,
     description: {
@@ -114,7 +119,7 @@ const works = [
     name: 'Tic-Tac-Toe',
     category: 'App',
     date: '2022-11-23',
-    // website_link: './portfolio/app/tic-tac-toe/index.html',
+    file_link: './portfolio/app/tic-tac-toe/',
     img_src: ticTacToe_preview,
     modal_images: ticTacToe_slide,
     description: {
@@ -128,7 +133,7 @@ const works = [
     name: 'Social Users Table',
     category: 'App',
     date: '2022-11-23',
-    // website_link: './portfolio/app/tic-tac-toe/index.html',
+    file_link: './portfolio/app/usersTable/',
     img_src: usersTable_preview,
     modal_images: usersTable_slides,
     description: {
