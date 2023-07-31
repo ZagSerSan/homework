@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import * as actions from './store/task/actions'
+import { taskCompleted, titleChanged, taskDeleted } from './store/task'
 import configureStore from './store/store'
 import './App.css'
 
@@ -15,13 +15,13 @@ const App = () => {
   }, [])
 
   const completeTask = (taskId) => {
-    store.dispatch(actions.taskCompleted(taskId))
+    store.dispatch(taskCompleted(taskId))
   }
   const changeTitle = (taskId) => {
-    store.dispatch(actions.titleChanged(taskId))
+    store.dispatch(titleChanged(taskId))
   }
-  const deleteTitle = (taskId) => {
-    store.dispatch(actions.titleDeleted(taskId))
+  const deleteTask = (taskId) => {
+    store.dispatch(taskDeleted(taskId))
   }
 
   return (
@@ -38,7 +38,7 @@ const App = () => {
               <button onClick={() => changeTitle(el.id)} className='margin-none'>
                 Change title
               </button>
-              <button onClick={() => deleteTitle(el.id)} className='margin-none'>
+              <button onClick={() => deleteTask(el.id)} className='margin-none'>
                 Delete title
               </button>
               <hr />
