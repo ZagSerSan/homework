@@ -28,14 +28,19 @@ const taskSlice = createSlice({
 const { actions, reducer: taskReducer } = taskSlice
 const { update, remove } = actions
 
-export function taskCompleted(id) {
-  return update({ id, completed: true })
+export const completedTask = (id) => (getState, dispatch) => {
+  dispatch(update({ id, completed: true }))
 }
+// посредством каррирования
 export function titleChanged(id) {
-  return update({ id, title: 'Changed..' })
+  return function(getState, dispatch) {
+    dispatch(update({ id, title: 'Changed..' }))
+  }
 }
 export function taskDeleted(id) {
-  return remove({ id })
+  return function(getState, dispatch) {
+    dispatch(remove({ id }))
+  }
 }
 
 export default taskReducer

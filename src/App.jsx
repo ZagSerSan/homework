@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { taskCompleted, titleChanged, taskDeleted } from './store/task'
+import { titleChanged, taskDeleted, completedTask } from './store/task'
 import configureStore from './store/store'
 import './App.css'
 
@@ -9,20 +9,8 @@ const App = () => {
   const [state, setState] = useState(store.getState())
 
   useEffect(() => {
-    store.subscribe(() => {
-      setState(store.getState())
-    })
+    store.subscribe(() => setState(store.getState()))
   }, [])
-
-  const completeTask = (taskId) => {
-    store.dispatch(taskCompleted(taskId))
-  }
-  const changeTitle = (taskId) => {
-    store.dispatch(titleChanged(taskId))
-  }
-  const deleteTask = (taskId) => {
-    store.dispatch(taskDeleted(taskId))
-  }
 
   return (
     <>
@@ -32,13 +20,13 @@ const App = () => {
             <li key={el.id}>
               <p>{el.title}</p>
               <p> {`Completed: ${el.completed}`}</p>
-              <button onClick={() => completeTask(el.id)}>
+              <button onClick={() => store.dispatch(completedTask(el.id))}>
                 Complete
               </button>
-              <button onClick={() => changeTitle(el.id)} className='margin-none'>
+              <button onClick={() => store.dispatch(titleChanged(el.id))} className='margin-none'>
                 Change title
               </button>
-              <button onClick={() => deleteTask(el.id)} className='margin-none'>
+              <button onClick={() => store.dispatch(taskDeleted(el.id))} className='margin-none'>
                 Delete title
               </button>
               <hr />
