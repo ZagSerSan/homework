@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { titleChanged, taskDeleted, completedTask, getTasks } from './store/task'
-import configureStore from './store/store'
+import createStore from './store/store'
 import './App.css'
 
-const store = configureStore()
+export const store = createStore()
 
 const App = () => {
   const [state, setState] = useState(store.getState())

@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createAction, createSlice } from '@reduxjs/toolkit'
 import todosService from '../services/todos.service'
 
 const initialState = []
@@ -8,9 +8,7 @@ const taskSlice = createSlice({
   name: 'task',
   initialState,
   reducers: {
-    //! не срабатывает тут
-    set(state, action) {
-      console.log(action.payload)
+    recived(state, action) {
       return action.payload
     },
     update(state, action) {
@@ -29,30 +27,32 @@ const taskSlice = createSlice({
 })
 
 const { actions, reducer: taskReducer } = taskSlice
-const { update, remove, set } = actions
+const { update, remove, recived } = actions
+
+const taskRequested = createAction('task/requested')
+const taskRequestFailed = createAction('task/requestFailed')
 
 export const getTasks = () => async (dispatch) => {
+  dispatch(taskRequested())
   try {
     const data = await todosService.fetch()
-    console.log(data)
-    //! не срабатывает тут
-    dispatch(set(data))
+    dispatch(recived(data))
   } catch (error) {
-    
+    dispatch(taskRequestFailed(error.message))
   }
 }
 
-export const completedTask = (id) => (getState, dispatch) => {
+export const completedTask = (id) => (dispatch) => {
   dispatch(update({ id, completed: true }))
 }
 // посредством каррирования
 export function titleChanged(id) {
-  return function(getState, dispatch) {
+  return function(dispatch) {
     dispatch(update({ id, title: 'Changed..' }))
   }
 }
 export function taskDeleted(id) {
-  return function(getState, dispatch) {
+  return function(dispatch) {
     dispatch(remove({ id }))
   }
 }
