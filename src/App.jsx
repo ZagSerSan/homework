@@ -1,39 +1,49 @@
 import React, { useEffect, useState } from 'react'
+import './App.css'
+import { useDispatch, useSelector } from 'react-redux'
 import { titleChanged, taskDeleted, completedTask, getTasks } from './store/task'
 import createStore from './store/store'
-import './App.css'
+import Loader from './common/loader'
 
 export const store = createStore()
 
 const App = () => {
-  const [state, setState] = useState(store.getState())
+  const state = useSelector(state => state.entities)
+  const isLoading = useSelector(state => state.isLoading)
+  const error = useSelector(state => state.error)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    store.dispatch(getTasks())
-    store.subscribe(() => setState(store.getState()))
+    dispatch(getTasks())
   }, [])
 
   return (
     <>
       <h1> App</h1>
-      <ul>
-        {state.map((el) => (
-            <li key={el.id}>
-              <p>{el.title}</p>
-              <p> {`Completed: ${el.completed}`}</p>
-              <button onClick={() => store.dispatch(completedTask(el.id))}>
-                Complete
-              </button>
-              <button onClick={() => store.dispatch(titleChanged(el.id))} className='margin-none'>
-                Change title
-              </button>
-              <button onClick={() => store.dispatch(taskDeleted(el.id))} className='margin-none'>
-                Delete title
-              </button>
-              <hr />
-            </li>
-        ))}
-      </ul>
+      {isLoading
+        ? <Loader/>
+        : (error
+          ? <h2>error..</h2>
+          : <ul>
+            {state.map((el) => (
+              <li key={el.id}>
+                <p>{el.title}</p>
+                <p> {`Completed: ${el.completed}`}</p>
+                <button onClick={() => dispatch(completedTask(el.id))}>
+                  Complete
+                </button>
+                <button onClick={() => dispatch(titleChanged(el.id))} className='margin-none'>
+                  Change title
+                </button>
+                <button onClick={() => dispatch(taskDeleted(el.id))} className='margin-none'>
+                  Delete title
+                </button>
+                <hr />
+              </li>
+            ))}
+          </ul>
+        )
+      }
     </>
   )
 }
