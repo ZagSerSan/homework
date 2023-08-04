@@ -8,9 +8,9 @@ import Loader from './common/loader'
 export const store = createStore()
 
 const App = () => {
-  const state = useSelector(state => state.entities)
-  const isLoading = useSelector(state => state.isLoading)
-  const error = useSelector(state => state.error)
+  const state = useSelector(state => state.tasks.entities)
+  const isLoading = useSelector(state => state.tasks.isLoading)
+  const error = useSelector(state => state.errors.entities[0])
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const App = () => {
       {isLoading
         ? <Loader/>
         : (error
-          ? <h2>error..</h2>
+          ? <h2>{error}!</h2>
           : <ul>
             {state.map((el) => (
               <li key={el.id}>
