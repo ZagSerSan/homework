@@ -1,20 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import './App.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { titleChanged, taskDeleted, completedTask, getTasks } from './store/task'
+import { titleChanged, taskDeleted, completedTask, getTasks, loadTasks, getTasksLoadingStatus } from './store/task'
 import createStore from './store/store'
 import Loader from './common/loader'
+import { getError } from './store/errors'
 
 export const store = createStore()
 
 const App = () => {
-  const state = useSelector(state => state.tasks.entities)
-  const isLoading = useSelector(state => state.tasks.isLoading)
-  const error = useSelector(state => state.errors.entities[0])
+  const state = useSelector(getTasks())
+  const isLoading = useSelector(getTasksLoadingStatus())
+  const error = useSelector(getError())
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getTasks())
+    dispatch(loadTasks())
   }, [])
 
   return (
