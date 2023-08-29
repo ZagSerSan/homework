@@ -22,8 +22,8 @@ const AuthLayout = () => {
         <div className='flex grow flex-col justify-center items-center  dark:text-slate-200 '>
             <Card>
                 <Routes>
-                    <Route path={'/auth' + '/login'} element={<LoginPage />} />
-                    <Route path={'/auth' + '/signup'} element={<SignUpPage />} />
+                    <Route path={'login'} element={<LoginPage />} />
+                    <Route path={'signup'} element={<SignUpPage />} />
                     {/* <Redirect to={path + "/signup"} /> */}
                 </Routes>
             </Card>

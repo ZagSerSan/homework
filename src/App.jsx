@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import AuthLayout from "./layouts/AuthLayout";
-// import PostsLayout from "./layouts/PostsLayout";
+import PostsLayout from "./layouts/PostsLayout";
 import MainPage from "./pages/MainPage";
 import NavBar from "./components/NavBar/NavBar";
 // import ProtectedRoute from "./components/ProtectedRoute";
@@ -15,9 +15,9 @@ function App() {
         <div className='min-h-screen bg-slate-50 dark:bg-slate-900 transition-colors duration-150 flex flex-col'>
             <NavBar />
             <Routes>
-                <Route path='/' element={<MainPage />} />
-                <Route path='/auth' element={<AuthLayout />} />
-                {/* <ProtectedRoute path='/posts/:id?' element={<PostsLayout />} /> */}
+                <Route path='' element={<MainPage />} />
+                <Route path='auth/*' element={<AuthLayout />} />
+                <Route path='posts/*' element={<PostsLayout />} />
                 {/* <Redirect from='*' to='/' /> */}
             </Routes>
 
