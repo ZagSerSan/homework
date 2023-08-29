@@ -1,19 +1,17 @@
-// export function createStore(reducer, initialState) {
-//     let state = initialState;
-//     let listeners = [];
+import authReducer from "./authSlice";
+import messageReducer from "./messageSlice";
+import postsReducer from "./postsSlice";
 
-//     function getState() {
-//         return state;
-//     }
-//     function dispatch(action) {
-//         state = reducer(state, action);
-//         for (let i = 0; i < listeners.length; i++) {
-//             const listener = listeners[i];
-//             listener();
-//         }
-//     }
-//     function subscribe(listener) {
-//         listeners.push(listener);
-//     }
-//     return { getState, dispatch, subscribe };
-// }
+const { combineReducers, configureStore } = require("@reduxjs/toolkit");
+
+const rootReducer = combineReducers({
+    auth: authReducer,
+    message: messageReducer,
+    posts: postsReducer,
+});
+
+export function createStore() {
+    return configureStore({
+        reducer: rootReducer,
+    });
+}

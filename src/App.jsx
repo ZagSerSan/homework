@@ -1,55 +1,29 @@
-import React, { useEffect } from 'react'
-import './App.css'
-import { useDispatch, useSelector } from 'react-redux'
-import { titleChanged, taskDeleted, completedTask, getTasks, loadTasks, getTasksLoadingStatus, addTask } from './store/task'
-import createStore from './store/store'
-import Loader from './common/loader'
-import { getError } from './store/errors'
+import React from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import AuthLayout from "./layouts/AuthLayout";
+import PostsLayout from "./layouts/PostsLayout";
+import MainPage from "./pages/MainPage";
+import NavBar from "./components/NavBar/NavBar";
+import ProtectedRoute from "./components/ProtectedRoute";
+import withRedux from "./hoc/withRedux";
+import withRouter from "./hoc/withRouter";
+import "react-toastify/dist/ReactToastify.css";
 
-export const store = createStore()
+function App() {
+    return (
+        <div className='min-h-screen bg-slate-50 dark:bg-slate-900 transition-colors duration-150 flex flex-col'>
+            <NavBar />
+            <Switch>
+                <Route path='/' exact component={MainPage} />
+                <Route path='/auth' component={AuthLayout} />
+                <ProtectedRoute path='/posts/:id?' component={PostsLayout} />
+                <Redirect from='*' to='/' />
+            </Switch>
 
-const App = () => {
-  const state = useSelector(getTasks())
-  const isLoading = useSelector(getTasksLoadingStatus())
-  const error = useSelector(getError())
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(loadTasks())
-  }, [])
-
-  return (
-    <>
-      <h1> App</h1>
-      {isLoading
-        ? <Loader/>
-        : (error
-          ? <h2>{error}!</h2>
-          : <div>
-              <button onClick={() => dispatch(addTask())}>add task</button>
-              <ul>
-              {state.map((el) => (
-                <li key={el.id}>
-                  <p>{el.title}</p>
-                  <p> {`Completed: ${el.completed}`}</p>
-                  <button onClick={() => dispatch(completedTask(el.id))}>
-                    Complete
-                  </button>
-                  <button onClick={() => dispatch(titleChanged(el.id))} className='margin-none'>
-                    Change title
-                  </button>
-                  <button onClick={() => dispatch(taskDeleted(el.id))} className='margin-none'>
-                    Delete title
-                  </button>
-                  <hr />
-                </li>
-              ))}
-            </ul>
-          </div> 
-        )
-      }
-    </>
-  )
+            <ToastContainer />
+        </div>
+    );
 }
-
-export default App
+const AppWithStoreAndRoutes = withRedux(withRouter(App));
+export default AppWithStoreAndRoutes;

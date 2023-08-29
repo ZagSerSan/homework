@@ -1,10 +1,23 @@
-import axios from 'axios'
+import axios from "axios";
+import { toast } from "react-toastify";
 
-axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com/'
+const httpService = axios.create();
 
-const httpService = {
-  get: axios.get,
-  post: axios.post
-}
+httpService.interceptors.response.use(
+    (res) => {
+        return res;
+    },
+    function (error) {
+        const expectedErrors =
+            error.response &&
+            error.response.status >= 400 &&
+            error.response.status < 500;
 
-export default httpService
+        if (!expectedErrors) {
+            toast.error("Something was wrong. Try it later");
+        }
+        return Promise.reject(error);
+    }
+);
+
+export default httpService;
