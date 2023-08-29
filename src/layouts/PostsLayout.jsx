@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 // Librares
 import { useDispatch } from "react-redux";
-import { useRouteMatch, Switch, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 // Components
 import BackgroundGradiend from "../components/BackgroundGradient";
 import ScreenWidthWrapper from "../components/ScreenWidthWrapper";
@@ -21,15 +21,15 @@ const PostsLayout = ({ children }) => {
         loadPostData();
     }, [dispatch]);
 
-    let { path } = useRouteMatch();
+    // let { path } = useRouteMatch();
     return (
         <>
             <BackgroundGradiend />
             <ScreenWidthWrapper>
-                <Switch>
-                    <Route path={path + "/:postId"} component={PostPage} />
-                    <Route exact path={path} component={PostsListPage} />
-                </Switch>
+                <Routes>
+                    <Route path={'/posts' + '/:postId'} element={<PostPage />} />
+                    <Route path={'/posts'} element={<PostsListPage />} />
+                </Routes>
                 {children}
             </ScreenWidthWrapper>
         </>

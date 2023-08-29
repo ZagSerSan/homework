@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 // Librares
 import * as Yup from "yup";
-import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useFormik, FormikProvider } from "formik";
 // Store
@@ -36,7 +35,7 @@ const SignUpPage = () => {
     const [loading, setLoading] = useState(false);
     const [successful, setSuccessful] = useState(false);
     const { message } = useSelector((state) => state.message);
-    const history = useHistory();
+    // const history = useHistory();
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -51,7 +50,7 @@ const SignUpPage = () => {
             .unwrap()
             .then(() => {
                 setSuccessful(true);
-                history.push("/");
+                // history.push("/");
             })
             .catch(() => {
                 setSuccessful(false);

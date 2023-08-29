@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 // Librares
 import * as Yup from "yup";
-import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useFormik, FormikProvider } from "formik";
 // Store
@@ -29,7 +28,7 @@ const initialValues = {
 const LoginPage = () => {
     const [loading, setLoading] = useState(false);
     const { message } = useSelector((state) => state.message);
-    const history = useHistory();
+    // const history = useHistory();
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -39,13 +38,13 @@ const LoginPage = () => {
     const handleLogin = (formValue) => {
         const { username, password } = formValue;
         setLoading(true);
-        const redirect = history.location.state
-            ? history.location.state.referrer.pathname
-            : null;
+        // const redirect = history.location.state
+        //     ? history.location.state.referrer.pathname
+        //     : null;
         dispatch(login({ username, password }))
             .unwrap()
             .then(() => {
-                history.push(redirect || "/");
+                // history.push(redirect || "/");
             })
             .catch(() => {
                 setLoading(false);
