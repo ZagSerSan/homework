@@ -4,7 +4,6 @@ import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { makeServer } from './mock/server'
-import { BrowserRouter } from 'react-router-dom'
 
 // Mock Server Connect
 if (process.env.REACT_APP_MOCK_ENABLED) {
