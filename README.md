@@ -23,9 +23,9 @@ A utility-first CSS framework for rapidly building custom user interfaces.
 
 #### Additional plugins
 
--   Official Tailwind CSS Typography plugin [@tailwindcss/typography](https://tailwindcss.com/docs/typography-plugin)
--   Multi-line truncation with [@tailwindcss/line-clamp](https://tailwindcss.com/blog/multi-line-truncation-with-tailwindcss-line-clamp)
--   Utility function to efficiently merge Tailwind CSS classes in JS without style conflicts. [tailwind-merge](https://github.com/dcastil/tailwind-merge)
+- Official Tailwind CSS Typography plugin [@tailwindcss/typography](https://tailwindcss.com/docs/typography-plugin)
+- Multi-line truncation with [@tailwindcss/line-clamp](https://tailwindcss.com/blog/multi-line-truncation-with-tailwindcss-line-clamp)
+- Utility function to efficiently merge Tailwind CSS classes in JS without style conflicts. [tailwind-merge](https://github.com/dcastil/tailwind-merge)
 
 ## Mirage JS
 

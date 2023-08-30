@@ -1,10 +1,10 @@
-import httpService from "./http.service";
-const API_URL = "/api/posts/";
+import httpService from './http.service'
+const API_URL = '/api/posts/'
 const get = () => {
-    return httpService.get(API_URL);
-};
+  return httpService.get(API_URL)
+}
 const postsService = {
-    get,
-};
+  get
+}
 
-export default postsService;
+export default postsService
