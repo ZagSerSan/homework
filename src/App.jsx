@@ -13,8 +13,12 @@ import PostsListPage from './pages/Posts/PostsListPage'
 import PostPage from './pages/Posts/PostPage'
 import LoginPage from './pages/LoginPage'
 import SignUpPage from './pages/SigupPage'
+import ProtectedRoute from './components/ProtectedRoute'
+// import { useSelector } from 'react-redux'
+// import { isLoggedInSelector } from './store/authSlice'
 
 function App() {
+  // const isLoggedIn = useSelector(isLoggedInSelector())
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900 transition-colors duration-150 flex flex-col">
       <NavBar />
@@ -26,7 +30,11 @@ function App() {
           <Route path="signup" element={<SignUpPage />} />
           <Route path="*" element={<Navigate to="/auth/signup" />} />
         </Route>
-        <Route path="posts" element={<PostsLayout />}>
+        <Route path="posts" element={
+          <ProtectedRoute redirectTo='/auth/login'>
+            <PostsLayout />
+          </ProtectedRoute>
+        }>
           <Route index element={<PostsListPage />} />
           <Route path=":postId" element={<PostPage />} />
         </Route>
