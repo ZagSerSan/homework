@@ -66,7 +66,7 @@ const LoginPage = () => {
 
         <div className="text-sm text-slate-600">
           or{' '}
-          <StyledNavLink to="/auth/signUp" styleType="underline">
+          <StyledNavLink to="../signUp" styleType="underline">
             {' '}
             start your 14-day free trial
           </StyledNavLink>
