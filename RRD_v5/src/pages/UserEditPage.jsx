@@ -1,16 +1,21 @@
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useParams, useHistory } from 'react-router-dom'
 
 const UserEditPage = () => {
-  const location = useLocation()
+  const params = useParams()
+  const history = useHistory()
+  const { userId, profile } = params
+
+  if (profile !== 'profile') {
+    history.replace(`/users/${userId}`)
+  }
 
   const getId = () => {
-    let rundomNum = Math.floor(Math.random() * 4) + 1
-    let userId = Number(location.state?.userId)
-
-    if (rundomNum === userId) {
-      if (userId === 4) return userId - 1
-      if (userId === 1) return userId + 1
+    const rundomNum = Math.floor(Math.random() * 4) + 1
+    let userIdNum = Number(userId)
+    if (rundomNum === userIdNum) {
+      if (userIdNum === 4) return rundomNum - 1
+      if (userIdNum === 1) return rundomNum + 1
       return rundomNum + 1
     } else {
       return rundomNum
@@ -22,10 +27,10 @@ const UserEditPage = () => {
   return (
     <div>
       <h1>User Edit Page</h1>
-      <Link to='../'>user page</Link>
-      <Link to={`../../${anotherUserId}`} state={{ userId: anotherUserId, profile: false }}>another user</Link>
-      <Link to='../../'>users list</Link>
-      <p>userId: {location.state?.userId}</p>
+      <Link to={`/users/${userId}`}>user page</Link>
+      <Link to={`/users/${anotherUserId}`}>another user</Link>
+      <Link to='/users'>users list</Link>
+      <p>userId: {userId}</p>
     </div>
   )
 }

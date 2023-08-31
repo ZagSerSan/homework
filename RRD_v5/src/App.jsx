@@ -1,12 +1,15 @@
+import { Switch, Route, Redirect } from 'react-router-dom'
 import './App.css'
-import { createBrowserRouter, RouterProvider} from "react-router-dom";
-import routes from './routes'
-
-const router = createBrowserRouter(routes)
+import HomePage from './pages/HomePage'
+import UsersListPage from './pages/UsersListPage'
 
 function App() {
   return (
-    <RouterProvider router={router} />
+    <Switch>
+      <Route exact path='/' component={HomePage}/>
+      <Route path='/users/:userId?/:profile?' component={UsersListPage}/>
+      <Redirect to='/'/>
+    </Switch>
   )
 }
 
