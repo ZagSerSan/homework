@@ -1,0 +1,26 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+div {
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  margin: 8px 0;
+}
+
+a {
+  font-size: 20px;
+  margin-bottom: 8px;
+  color: #001d7c;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
