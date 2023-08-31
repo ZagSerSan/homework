@@ -1,18 +1,12 @@
 import './App.css'
-import UserEditPage from './pages/UserEditPage'
-import UserPage from './pages/UserPage'
-import UsersListPage from './pages/UsersListPage'
-import HomePage from './pages/homePage'
+import { createBrowserRouter, RouterProvider} from "react-router-dom";
+import routes from './routes'
+
+const router = createBrowserRouter(routes)
 
 function App() {
-
   return (
-    <>
-      <HomePage/>
-      <UsersListPage/>
-      <UserPage/>
-      <UserEditPage/>
-    </>
+    <RouterProvider router={router} />
   )
 }
 
