@@ -14,8 +14,8 @@ yargs.command({
       demandOption: true
     }
   },
-  handler({ title }) {
-    addNote(title)
+  async handler({ title }) {
+    await addNote(title)
   }
 })
 
