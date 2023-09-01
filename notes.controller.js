@@ -1,11 +1,12 @@
 const fs = require('fs/promises')
 const path = require('path')
+const chalk = require('chalk')
+// import chalk from 'chalk';
 
 const notesPath = path.join(__dirname, 'db.json')
 
 async function addNote(title) {
   const notes = await getNotes()
-  // console.log(notes)
 
   const note = {
     title,
@@ -14,9 +15,9 @@ async function addNote(title) {
 
   notes.push(note)
   await fs.writeFile(notesPath, JSON.stringify(notes))
+  // console.log(chalk.green('Note was added!'))
+  // console.log(chalk.blue('Hello world!'));
 }
-
-addNote('Test!')
 
 async function getNotes() {
   // const notes = require('./db.json')
@@ -27,7 +28,14 @@ async function getNotes() {
   return Array.isArray(JSON.parse(notes)) ? JSON.parse(notes) : []
 }
 
+const printNotes = async () => {
+  const notes = await getNotes()
+  notes.forEach(note => {
+    console.log(chalk.blue(note.title))
+  })
+}
+
 module.exports = {
-  addNote, getNotes
+  addNote, printNotes
 }
 
