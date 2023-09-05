@@ -22,7 +22,7 @@ app.use(express.urlencoded({
 // Обработка push запроса
 app.put('/edit/:id', async (req, res) => {
   console.log('id:', req.params.id)
-  console.log('request=>', req.body)
+  console.log('request=>', req.body) //? {}
   // await editNote(req.params.id)
   
   res.render('index', {
