@@ -24,9 +24,12 @@
     <% if (notes.length) { %>
       <div>
         <% for (let i = 0; i < notes.length; i++) { %>
-          <div style="width: 300px; padding: 5px; border: 1px #ccc solid; display: flex; justify-content: space-between;">
-            <span><%= notes[i].title %></span>
-            <button data-type="remove" data-id="<%= notes[i].id %>" style="background-color: #a30000; border: 0; color: #fff; cursor: pointer;">&times;</button>
+          <div class="parent" style="width: 300px; padding: 5px; border: 1px #ccc solid; display: flex; justify-content: space-between;">
+            <span data-id="<%= notes[i].id %>"><%= notes[i].title %></span>
+            <div>
+              <button data-type="edit" data-id="<%= notes[i].id %>" style="background-color: #a34900; border: 0; color: #fff; cursor: pointer;">edit</button>
+              <button data-type="remove" data-id="<%= notes[i].id %>" style="background-color: #a30000; border: 0; color: #fff; cursor: pointer;">&times;</button>
+            </div>
           </div>
         <% } %>
       </div>

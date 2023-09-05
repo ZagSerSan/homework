@@ -1,6 +1,6 @@
 const express = require('express')
 const chalk = require('chalk')
-const { addNote, getNotes, removeNote } = require('./notes.controller')
+const { addNote, getNotes, removeNote, editNote } = require('./notes.controller')
 const path = require('path')
 
 const port = 3000
@@ -12,16 +12,30 @@ app.set('view engine', 'ejs')
 app.set('views', 'pages')
 // set static folder: public
 app.use(express.static(path.resolve(__dirname, 'public')))
+// чтобы можно было отправлять данные в формате json
+app.use(express.json())
 
 app.use(express.urlencoded({
   extended: true
 }))
 
+// Обработка push запроса
+app.put('/edit/:id', async (req, res) => {
+  console.log('id:', req.params.id)
+  console.log('request=>', req.body)
+  // await editNote(req.params.id)
+  
+  res.render('index', {
+    title: "Express app",
+    notes: await getNotes(),
+    created: false
+  })
+})
 // Обработка delete запроса
 app.delete('/:id', async (req, res) => {
   console.log('id:', req.params.id)
   await removeNote(req.params.id)
-  
+
   res.render('index', {
     title: "Express app",
     notes: await getNotes(),

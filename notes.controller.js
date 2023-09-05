@@ -4,9 +4,17 @@ const chalk = require('chalk')
 
 const notesPath = path.join(__dirname, 'db.json')
 
-//* use this commands for test
-//* node index list
-//* node index remove --id=
+async function editNote(id) {
+  const notes = await getNotes()
+  console.log(notes)
+  
+  const tepmNote = notes.find(note => note.id === id)
+  console.log('tepmNote', tepmNote)
+
+  // await fs.writeFile(notesPath, JSON.stringify(notes))
+  // console.log(chalk.green('Note was edited!'))
+  // console.log(chalk.blue(`id: ${note.id}, title: ${note.title}`))
+}
 
 async function removeNote(id) {
   const notes = await getNotes()
@@ -48,6 +56,6 @@ const printNotes = async () => {
 }
 
 module.exports = {
-  addNote, printNotes, removeNote, getNotes
+  addNote, printNotes, removeNote, getNotes, editNote
 }
 
