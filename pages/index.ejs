@@ -3,17 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Node simple server</title>
+  <link href="./output.css" rel="stylesheet">
+  <title><%= title %></title>
 </head>
 <body>
   
   <div>
-    <h1>This is working!</h1>
+    <h1><%= title %></h1>
 
     <form action="/" method="post">
       <input type="text" name="title" required>
       <button type="submit">Create note</button>
     </form>
+
+    <hr/>
+
+    <div>
+      <% for (let i = 0; i < notes.length; i++) { %>
+        <p><%= notes[i].title %></p>
+      <% } %>
+    </div>
+
   </div>
 
 </body>
