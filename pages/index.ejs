@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="./output.css" rel="stylesheet">
   <title><%= title %></title>
 </head>
-<body>
+<body >
   
+  <% if (created) {%>
+    <div style="color: #0b8000;">Note has been created!</div>
+  <% } %>
+
   <div>
     <h1><%= title %></h1>
 
@@ -18,13 +21,21 @@
 
     <hr/>
 
-    <div>
-      <% for (let i = 0; i < notes.length; i++) { %>
-        <p><%= notes[i].title %></p>
-      <% } %>
-    </div>
-
+    <% if (notes.length) { %>
+      <div>
+        <% for (let i = 0; i < notes.length; i++) { %>
+          <div style="width: 300px; padding: 5px; border: 1px #ccc solid; display: flex; justify-content: space-between;">
+            <span><%= notes[i].title %></span>
+            <button data-type="remove" data-id="<%= notes[i].id %>" style="background-color: #a30000; border: 0; color: #fff; cursor: pointer;">&times;</button>
+          </div>
+        <% } %>
+      </div>
+    <% } else { %>
+      <p>No notes..</p>
+    <% } %>
   </div>
+
+  <script src="/app.js"></script>
 
 </body>
 </html>
