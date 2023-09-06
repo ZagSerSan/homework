@@ -4,16 +4,15 @@ const chalk = require('chalk')
 
 const notesPath = path.join(__dirname, 'db.json')
 
-async function editNote(id) {
+async function editNote({ id, title }) {
   const notes = await getNotes()
-  console.log(notes)
   
-  const tepmNote = notes.find(note => note.id === id)
-  console.log('tepmNote', tepmNote)
+  const editingNote = notes.find(note => note.id === id)
+  editingNote.title = title
 
-  // await fs.writeFile(notesPath, JSON.stringify(notes))
-  // console.log(chalk.green('Note was edited!'))
-  // console.log(chalk.blue(`id: ${note.id}, title: ${note.title}`))
+  await fs.writeFile(notesPath, JSON.stringify(notes))
+  console.log(chalk.yellowBright('Note was edited!'))
+  console.log(chalk.yellowBright(`id: ${editingNote.id}, title: ${editingNote.title}`))
 }
 
 async function removeNote(id) {

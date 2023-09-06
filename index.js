@@ -6,7 +6,7 @@ const path = require('path')
 const port = 3000
 const app = express()
 
-// шаблонизатор ejs
+// шаблонизатор ejs ======================
 app.set('view engine', 'ejs')
 // замена стандартной папки на pages
 app.set('views', 'pages')
@@ -19,11 +19,11 @@ app.use(express.urlencoded({
   extended: true
 }))
 
-// Обработка push запроса
+// Обработка push запроса ======================
 app.put('/edit/:id', async (req, res) => {
-  console.log('id:', req.params.id)
-  console.log('request=>', req.body) //? {}
-  // await editNote(req.params.id)
+  // console.log('id:', req.params.id)
+  // console.log('request=>', req.body) //? {}
+  await editNote(req.body)
   
   res.render('index', {
     title: "Express app",
@@ -31,7 +31,8 @@ app.put('/edit/:id', async (req, res) => {
     created: false
   })
 })
-// Обработка delete запроса
+
+// Обработка delete запроса ======================
 app.delete('/:id', async (req, res) => {
   console.log('id:', req.params.id)
   await removeNote(req.params.id)
@@ -42,7 +43,8 @@ app.delete('/:id', async (req, res) => {
     created: false
   })
 })
-// Обработка get запроса
+
+// Обработка get запроса ======================
 app.get('/', async (req, res) => {
   res.render('index', {
     title: "Express app",
@@ -50,7 +52,7 @@ app.get('/', async (req, res) => {
     created: false
   })
 })
-// Обработка post запроса
+// Обработка post запроса ======================
 app.post('/', async (req, res) => {
   await addNote(req.body.title)
   res.render('index', {
@@ -60,7 +62,7 @@ app.post('/', async (req, res) => {
   })
 })
 
-// server
+// server ======================
 app.listen(port, () => {
   console.log(chalk.blue(`server has been started on port: ${port}...`))
 })
