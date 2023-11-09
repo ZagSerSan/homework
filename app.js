@@ -22,9 +22,14 @@ if (process.env.NODE_ENV === 'production') {
   app.use('/', express.static(path.join(__dirname, 'static')))
 
   const indexPath = path.join(__dirname, 'static', 'index.html')
-  app.get('*', (req, res) => {
+  app.get('/', (req, res) => {
     res.sendFile(indexPath)
   })
+
+  // const indexPath = path.join(__dirname, 'static', 'index.html')
+  // app.get('*', (req, res) => {
+  //   res.sendFile('indexPath')
+  // })
 }
 
 async function start() {
