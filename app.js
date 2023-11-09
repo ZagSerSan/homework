@@ -9,7 +9,7 @@ const routes = require('./routes')
 const fileUpload = require('express-fileupload');
 
 const app = express()
-const PORT = config.get('port') ?? 8080
+const PORT = config.get('port') ?? 80
 
 app.use(cors())
 app.use(fileUpload({}))
